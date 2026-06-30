@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import multer from 'multer';
 import { extractTextFromPdf, chunkText } from './rag/documentProcessor.js';
+import { storeChunksInPinecone } from './rag/vectorStore.js';
 
 const upload = multer({storage: multer.memoryStorage() });
 dotenv.config();
@@ -24,6 +25,8 @@ app.post('/api/upload', upload.single('pdf'), async (req, res) => {
 
         console.log(`Successfuly extracted ${rawText.length} characters`);
 
+        await storeChunksInPinecone(textChunks);
+        
         res.json({
             message: "PDF successfuly parsed and chunked",
             totalChunks: textChunks.length
