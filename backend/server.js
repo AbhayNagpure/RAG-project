@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import multer from 'multer';
 import { extractTextFromPdf, chunkText } from './rag/documentProcessor.js';
 import { storeChunksInPinecone } from './rag/vectorStore.js';
+import { askQuestion } from './rag/chat.js';
 
 const upload = multer({storage: multer.memoryStorage() });
 dotenv.config();
@@ -34,6 +35,25 @@ app.post('/api/upload', upload.single('pdf'), async (req, res) => {
     } catch (error) {
         console.error("Upload error:", error);
         res.status(500).json({ error: "Failed to process the PDF."});
+    }
+})
+
+app.post('/api/chat', async(req, res) => {
+    try {
+        
+        const { question } = req.body;
+
+        if(!question){
+            return res.status(400).json({error: "Please provide a question"});
+        }
+
+        const answer = await askQuestion(question);
+
+        res.json({ answer: answer});
+
+    } catch (error) {
+        console.error("Chat error: ", error);
+        res.status(500).json({ error: "Failed to answer the question" });
     }
 })
 
