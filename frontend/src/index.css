@@ -1,0 +1,72 @@
+/* Import our clean and techy fonts from Google */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  /* Ultra-clean, dark monochrome palette */
+  --bg-color: #0a0a0a;
+  --surface-color: #141414;
+  --border-color: #2a2a2a;
+  
+  --text-primary: #ededed;
+  --text-secondary: #888888;
+  
+  --font-main: 'Inter', sans-serif;
+  --font-tech: 'JetBrains Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  font-size: 14px; /* Keeping text small and crisp */
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Very simple, flat button style with minimal hover */
+button {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-family: var(--font-tech);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 8px 16px;
+  transition: border-color 0.1s ease; /* Fast, subtle hover */
+}
+
+button:hover {
+  border-color: var(--text-secondary);
+}
+
+/* Sharp, simple inputs */
+input, textarea {
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  font-size: 14px;
+  padding: 10px 14px;
+  outline: none;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--text-secondary);
+}
+
+/* Hide scrollbars for a cleaner look but keep functionality */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+}
