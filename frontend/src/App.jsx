@@ -1,6 +1,7 @@
 import React from 'react';
-import { Terminal, Settings, UploadCloud, MessageSquare } from 'lucide-react';
+import { Terminal, Settings, MessageSquare } from 'lucide-react';
 import UploadZone from './components/UploadZone.jsx';
+import ChatInterface from './components/ChatInterface.jsx';
 
 export default function App() {
   return (
@@ -21,8 +22,9 @@ export default function App() {
         </div>
         
         {/* Navigation Icons */}
-        <UploadCloud size={20} color="var(--text-secondary)" style={{ cursor: 'pointer' }} />
-        <MessageSquare size={20} color="var(--text-secondary)" style={{ cursor: 'pointer' }} />
+        <div style={{ cursor: 'pointer', opacity: 1 }}>
+          <MessageSquare size={20} color="var(--text-primary)" />
+        </div>
         
         <div style={{ flex: 1 }} />
         <Settings size={20} color="var(--text-secondary)" style={{ cursor: 'pointer' }} />
@@ -49,13 +51,39 @@ export default function App() {
         {/* Content Area */}
         <div style={{ 
           flex: 1, 
-          padding: '24px', 
-          display: 'flex', 
-          justifyContent: 'center', 
-          alignItems: 'center',
-          backgroundColor: 'var(--bg-color)' 
+          display: 'flex',
+          backgroundColor: 'var(--bg-color)',
+          overflow: 'hidden'
         }}>
-           <UploadZone />
+           
+           {/* Center Chat Area */}
+           <div style={{ flex: 1 }}>
+             <ChatInterface />
+           </div>
+
+           {/* Right Panel for Knowledge Base / Upload */}
+           <div style={{ 
+             width: '320px', 
+             borderLeft: '1px solid var(--border-color)',
+             backgroundColor: 'var(--surface-color)',
+             display: 'flex',
+             flexDirection: 'column'
+           }}>
+             <div style={{
+               padding: '16px 20px',
+               borderBottom: '1px solid var(--border-color)',
+               fontFamily: 'var(--font-tech)',
+               fontSize: '11px',
+               color: 'var(--text-secondary)',
+               letterSpacing: '0.5px'
+             }}>
+               // KNOWLEDGE BASE
+             </div>
+             <div style={{ padding: '20px' }}>
+               <UploadZone />
+             </div>
+           </div>
+
         </div>
 
       </main>
