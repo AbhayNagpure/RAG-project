@@ -39,14 +39,10 @@ export default function UploadZone() {
   return (
     <div style={{
       width: '100%',
-      maxWidth: '600px',
-      border: '1px dashed var(--border-color)',
-      padding: '40px',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      gap: '24px',
-      backgroundColor: 'var(--surface-color)'
+      gap: '24px'
     }}>
       
       <div style={{ 
