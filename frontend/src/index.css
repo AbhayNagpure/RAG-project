@@ -70,3 +70,13 @@ input:focus, textarea:focus {
 ::-webkit-scrollbar-thumb {
   background: var(--border-color);
 }
+
+/* Subtle loading pulse */
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+.loading-pulse {
+  animation: pulse 1.5s infinite ease-in-out;
+}

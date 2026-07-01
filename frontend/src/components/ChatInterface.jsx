@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Send } from 'lucide-react';
 
 export default function ChatInterface() {
@@ -6,6 +6,16 @@ export default function ChatInterface() {
   const [messages, setMessages] = useState([
     { role: 'assistant', text: 'System initialized. Ready for queries based on ingested documents.' }
   ]);
+  
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -70,7 +80,9 @@ export default function ChatInterface() {
             }}>
               {msg.role === 'user' ? 'USER_INPUT' : 'SYS_RESPONSE'}
             </div>
-            <div style={{
+            <div 
+              className={msg.isLoading ? 'loading-pulse' : ''}
+              style={{
               maxWidth: '85%',
               padding: msg.role === 'user' ? '12px 16px' : '0',
               backgroundColor: msg.role === 'user' ? 'var(--surface-color)' : 'transparent',
@@ -85,6 +97,7 @@ export default function ChatInterface() {
             </div>
           </div>
         ))}
+        <div ref={messagesEndRef} />
       </div>
 
       {/* Input Area */}
